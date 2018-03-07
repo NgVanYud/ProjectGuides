@@ -12,8 +12,8 @@ thì bảo trì giống như một cơn ác mộng với những người khác.
 * Nên có một môi trường `thử nghiệm` nếu nó cần thiết.
 
     _Tại sao:_
-    > Trong khi thi thoảng việc [End to end testing](https://viblo.asia/p/what-is-end-to-end-testing-znmMd0P6Mr69) 
-    ở chế độ `production` có vẻ là đủ thì nó lại có vài ngoại lệ:
+    > ~~Trong khi thi thoảng việc [End to end testing](https://viblo.asia/p/what-is-end-to-end-testing-znmMd0P6Mr69) 
+    ở chế độ `production` có vẻ là đủ thì nó lại có vài ngoại lệ:~~ (While sometimes end to end testing in production mode might seem enough, there are some exceptions: - **Đôi khi chỉ cần thực thi bước test end to end trên "production" thực tế là xong, nhưng cũng có một vài ngoại lệ như:**)
     Ví dụ như bạn có thể không muốn cho phép việc phân tích thông tin trong chế độ 'production' và làm rác
     bảng điều khiển của một ai đó bởi các dữ liệu test. Những ví dụ khác như việc
     API của bạn có thể có những giới hạn tỉ lệ trong  chế độ`production` và chặn các việc gọi phương thức test sau khi đã
@@ -25,21 +25,22 @@ theo quy ước, ví dụ như `moduleName.spec.js`.
     _Tại sao:_
     > Bạn không muốn đào sâu vào một cấu trục thư mục để tìm một nơi thử nghiệm [Xem thêm...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc) 
 
-* Đưa các tập tin kiểm tra bổ sung của bạn vào một thư mục thử nghiệm riêng biệt để tránh nhầm lẫn.    
+* ~~Đưa các tập tin kiểm tra bổ sung của bạn vào một thư mục thử nghiệm riêng biệt để tránh nhầm lẫn.~~ (Put your additional test files into a separate test folder to avoid confusion. - **Hãy đặt các file test bổ sung thêm của mình trong một folder test riêng để tránh sự nhầm lẫn**)     
     
     _Tại sao:_
     > Một vài file thử nghiệm không có quan hệ cụ thể với bất kì một file thực thi nào. Bạn phải đưa nó vào trong 1 thư mục
     nơi mà hầu hết được tìm bởi các developer: thư mục `__test__`. Tên `__test__` hiện tại cũng là chuẩn và được sử dụng bởi
     hầu hết các Framework JavaScript thử nghiệm.
     
-* Viết những đoạn mã có thể thử nghiệm, tránh những sai sót, viết các hàm thuần túy.
+* Viết những đoạn mã có thể thử nghiệm, ~~tránh những sai sót, viết các hàm thuần túy.~~ ( avoid side effects, extract side effects, write pure functions  **tránh ảnh hưởng đến các thành phần liên quan và các thành phần mở rộng khác, viết các function tách bạch.**) 
 
     _Tại sao:_ 
     
     >Bạn muốn kiểm tra một logic kinh doanh như các đơn vị riêng biệt. Bạn phải
     "giảm thiểu tác động ngẫu nhiên và các quy trình không xác định đối với code của bạn"
     [Xem thêm...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
-    > Một hàm thuẩn là một hàm mà luôn luôn trả về cùng một đầu ra.
+    > ~~Một hàm thuẩn là một hàm mà luôn luôn trả về cùng một đầu ra~~ (
+A pure function is a function that always returns the same output for the same input - **Một function tách bạch là 1 function luôn trả về các output giống nhau khi các dũ liệu đầu vào giống nhau**).
     Ngược lại một hàm không thuần là một hàm mà có những tác động bên ngoài hoặc phụ thuộc vào điều kiện từ bên ngoài để
     tạo ra giá trị. Nó khiến chúng khó lường trước được [Xem thêm...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
@@ -59,7 +60,7 @@ theo quy ước, ví dụ như `moduleName.spec.js`.
     
     _Tại sao:_
     > Đây là một ghi chú tiện dụng mà bạn nên để lại cho các developer khác hoặc chuyên gia DevOps hoặc QA hoặc cho
-    bất kì ai đủ may mắn khi làm việc với code của bạn
+    bất kì ai đủ ~~may mắn~~ (**bỏ**) khi làm việc với code của bạn
    
 <a name="structure-and-naming"></a>
 
@@ -116,7 +117,7 @@ theo quy ước, ví dụ như `moduleName.spec.js`.
     
     * Đặt các __build ouput__ trong thư mục `./build`. Thêm `build/` và `.gitignore` 
         _Tại sao phải làm vậy:_
-        > Đặt tên chúng theo ý bạn, có thể là `dist` chẳng hạn. Nhưng đảm bảo rằng chúng phù hợp vs team của bạn. Những gì nhận được đã được tạo ra (đóng gọi, biên dịch, chuyển giao) hoặc được di chuyển đến. Những gì bạn tạo, các thành viên của nhóm cũng nên tạo cùng, vì vậy không có mục đích gì để commit chúng lên git trừ phi bạn muốn.
+        > Đặt tên chúng theo ý bạn, có thể là `dist` chẳng hạn. Nhưng đảm bảo rằng chúng phù hợp vs team của bạn. ~~Những gì nhận được đã được tạo ra (đóng gọi, biên dịch, chuyển giao) hoặc được di chuyển đến~~ (What gets in there is most likely generated (bundled, compiled, transpiled) or moved there - **Những gì được tạo ra bằng các cách như (bundled, compliled,transpiled) đều có thể được lưu và lấy từ folder này**). Những gì bạn tạo, các thành viên của nhóm cũng nên tạo cùng, vì vậy không có mục đích gì để commit chúng lên git trừ phi bạn muốn.
         
     <a name="code-style"></a>
     
@@ -135,7 +136,7 @@ theo quy ước, ví dụ như `moduleName.spec.js`.
 * Hãy kiểm tra code style trong quá trình xây dựng hệ thống.
 
     _Tại sao phải như vậy:_
-    > Phá vỡ những gì bạn đã xây dựng là một cách áp dụng code style và trong code của bạn. Nó sẽ giúp bạn làm code bớt tính nghiêm trọng. Hãy thực hiện điều đó ở cả client lẫn server. [Xem thêm...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
+    > ~~Phá vỡ những gì bạn đã xây dựng là một cách áp dụng code style và trong code của bạn. Nó sẽ giúp bạn làm code bớt tính nghiêm trọng.~~ (Breaking your build is one way of enforcing code style to your code. It prevents you from taking it less seriously -  **Việc bị phá vỡ trong cấu trúc của bạn là 1 một lý do tại sao cần thực hiện code style trong code của bạn. Điều đó sẽ ngăn bạn suy nghĩ xem nhẹ việc áp dụng code style trong code**) Hãy thực hiện điều đó ở cả client lẫn server. [Xem thêm...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
     
 * Sử dụng [ESLint - Pluggable JavaScript linter](http://eslint.org/) để áp dung code style
 
@@ -152,14 +153,14 @@ theo quy ước, ví dụ như `moduleName.spec.js`.
 * Sử dụng `.eslintignore` để loại trừ các file hoặc thư mục ra khỏi việc kiểm tra code style.
 
     _Tại sao phải làm vậy:_
-    > Bạn không nhất thiết phải làm bẩn code của mình bằng việc sử dụng các comment của `eslint-disable` bất kể khi nào bạn cần loại bỏ các file khỏi bị kiểm tra code style.
+    > ~~Bạn không nhất thiết phải làm bẩn code của mình bằng việc sử dụng các comment của `eslint-disable` ~~ (You don't have to pollute your code with eslint-disable comments  **Bạn không làm lộn xộn code của mình với những commnent `eslint-disable` bất cứ khi nào bạn cần loại bỏ 1 vài file khỏi công đoạn check style**) bất kể khi nào bạn cần loại bỏ các file khỏi bị kiểm tra code style.
 
 * Loại bỏ các comment `eslint` đã bị vô hiệu hóa trc khi tạo ra một Pull Request 
 
     _Tại sao phải làm như vậy_
     > Sẽ thật bình thường khi vô hiệu hóa việc kiểm tra code style khi đang làm việc trong một khối code để có thể tập trung hơn vào logic. Hãy nhớ loại bỏ hết các comment `eslint-disable` và theo các nguyên tắc của nó.
 
-* Phụ thuộc vào kích thước của nhiệm vụ hãy sử dụng comment `//TODO` hoặc mở một ticket.
+* Phụ thuộc vào ~~kích thước của~~ ((**bỏ**)) nhiệm vụ hãy sử dụng comment `//TODO` hoặc mở một ticket.
 
     _Tại sao phải làm như vậy_
     > Vì bạn có thể nhắc lại bản thân và những người khác về một nhiệm vụ (Ví dụ như sắp xếp lại một chức năng hoặc cập nhật nhận xét). Đối với nhiệm vụ lớn hơn hãy sử dụng `//TODO(#3456)` mà đã được áp dụng bởi quy tắc __lint__ và con số kia là một open ticket
@@ -172,7 +173,7 @@ theo quy ước, ví dụ như `moduleName.spec.js`.
 * Tránh những comment, log hoặc tên không liên quan hoặc hài hước.    
 
     _Tại sao phải như vậy:_
-    > Trong khi quá trình xây dựng của bạn có thể bị loại bỏ chúng, đôi khi mã nguồn của bạn có thể được bàn giao cho công ty / khách hàng khác và __they may not share the same banter__
+    > Trong khi quá trình xây dựng của bạn có thể bị loại bỏ chúng, đôi khi mã nguồn của bạn có thể được bàn giao cho công ty / khách hàng khác  __they may not share the same banter__ (** thì không thể để những lỗi lực cười như thể được.**)
 
 * Tạo ra các tên có thể tìm kiếm vs ý nghĩa khác nhau và tránh rút gọn tên. Đối với những function sử dụng nhiều, hãy đặt tên mô tả. Tên của một function nên là một động từ hoặc cụm động từ, và nó cần nói nên được ý định của nó
     
